@@ -1,0 +1,203 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap');
+
+:root{
+    font-size: 20px;
+    font-family: Inter;
+}
+
+html, body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header + section{
+    height: 100vh;
+}
+
+.heading{
+    font-family: Inter;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 30px;
+    user-select: none;
+}
+
+.main-heading{
+    margin: 0;
+    font-size: 60px;
+}
+
+
+
+.options > a {
+  display: inline-flex;       /* so padding works */
+  padding: 0.75rem 1.5rem;     /* size */
+  margin: 1rem;
+  height: 10rem;
+  width: 10rem;
+  text-decoration: none;       /* kill the underline */
+  color: white;                /* text color */
+  background-color: #007bff;   /* nice blue */
+  border-radius: 8px;          /* rounded corners */
+  font-weight: bold;           /* readable */
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* .options > a:hover {
+  pass
+} */
+
+
+.options{
+    display: flex;
+    border: 10px solid red;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+}
+
+
+#menu-btn{
+    border: none;
+    background: none;
+}
+
+.navbar{
+    background-color: rgb(5, 5, 5);
+    opacity: 80%;
+    height: 6rem;
+    z-index: 500;
+    transform: translateY(-100%);
+}
+
+.sidebar{
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* border: 10px solid red; */
+    background-color: black;
+    opacity: 80%;
+    width: 18rem;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+}
+
+.sidebar-head{
+    position: absolute;
+    top: 1rem;
+    left: 15%;
+    color: rgb(136, 136, 136);
+    font-weight: 100;
+    font-size: 2rem;
+    user-select: none;
+}
+
+.sidebar-ref{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+}
+
+a {
+  user-select: none;        /* prevents text selection */
+  -webkit-user-drag: none; /* prevents dragging in Chrome/Safari */
+  -moz-user-drag: none;    /* Firefox */
+  -ms-user-drag: none;     /* IE/Edge */
+  cursor: pointer;          /* keeps the hand cursor */
+}
+
+
+li{
+    padding: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+.listbox{
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.credits{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 1rem;
+    color: white;
+    user-select: none;
+}
+
+.creds{
+    font-size: 0.6rem;
+    margin: 0;
+}
+
+.git-link{
+    font-size: 0.95rem;
+    margin: 0;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+}
+
+.overlay{
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 900;
+}
+
+/* .feet{
+    display: flex;
+    background-color: black;
+    opacity: 80%;
+    height: 30rem;
+} */
+
+/* 
+input{
+    display: block;
+    margin: 10px;
+    padding: 2rem;
+    height: 80px;
+    width: 120px;
+    border-radius: 10px;
+    border-color: white;
+    border: 10px solid red;
+} */
+/* 
+input:hover{
+    transition: transform 0.3s ease-in, background 1s ease-out;
+    transform: scale(1.05);
+    background-color: aquamarine;
+}
+
+input:active{
+    transition: transform 100ms ease-out, background 0.2s linear; 
+    transform: scale(0.99);
+    background-color:aqua;
+    border: none;
+} */
