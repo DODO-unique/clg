@@ -15,10 +15,6 @@ html, body{
     justify-content: space-between;
 }
 
-header + section{
-    height: 100vh;
-}
-
 .heading{
     font-family: Inter;
     font-weight: 900;
@@ -169,13 +165,6 @@ li{
     pointer-events: none;
     z-index: 900;
 }
-
-/* .feet{
-    display: flex;
-    background-color: black;
-    opacity: 80%;
-    height: 30rem;
-} */
 
 /* 
 input{
