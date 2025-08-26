@@ -1,0 +1,49 @@
+.heading{
+    font-family: Inter;
+    // margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    font-size: 30px;
+    user-select: none;
+}
+
+.main-heading{
+    margin: 0;
+    font-size: 60px;
+    font-weight: 600;
+}
+
+
+
+.options > a {
+  display: inline-flex;       /* so padding works */
+  padding: 0.75rem 1.5rem;     /* size */
+  margin: 1rem;
+  height: 10rem;
+  width: 10rem;
+  text-decoration: none;       /* kill the underline */
+  color: white;                /* text color */
+  background-color: #007bff;   /* nice blue */
+  border-radius: 8px;          /* rounded corners */
+  font-weight: bold;           /* readable */
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* .options > a:hover {
+  pass
+} */
+
+
+.options{
+    display: flex;
+    // border: 10px solid red;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
