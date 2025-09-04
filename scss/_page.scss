@@ -10,3 +10,15 @@ html, body{
     // flex-direction: column;
     // justify-content:end;
 }
+
+// kill the scrollbar
+html {
+    overflow-y: scroll; /* always scroll, prevents layout jump */
+    scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    width: 0; /* Chrome, Edge, Safari */
+    background: transparent; 
+}
+
