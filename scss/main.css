@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;1,14..32,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
 :root {
   font-size: 20px;
 }
@@ -9,19 +11,85 @@ html, body {
   height: 100%;
 }
 
+html {
+  overflow-y: scroll; /* always scroll, prevents layout jump */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 0; /* Chrome, Edge, Safari */
+  background: transparent;
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.intro-overlay * {
+  font-size: 1rem;
+  font-family: Fira Code;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+
+.terminal {
+  height: 43rem;
+  width: 75ch;
+  padding: 20px;
+}
+
+.default-starter {
+  color: white;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 0;
+  }
+  50.1%, 100% {
+    opacity: 1;
+  }
+}
+#blinker {
+  animation: blink 1s steps(1) infinite;
+  color: rgb(206, 210, 255);
+}
+
+.cursor {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid red;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
 #menu-btn {
-  border: none;
-  background: none;
+  border: 2px solid white;
+  margin: 1rem;
 }
 
 .navbar {
   position: fixed;
-  top: 0;
-  background-color: rgb(5, 5, 5);
-  opacity: 80%;
-  height: 6rem;
-  z-index: 500;
   transform: translateY(-100%);
+  background-color: rgb(0, 8, 43);
+  opacity: 60%;
+  height: 6rem;
+  width: 100vw;
+  z-index: 1000;
+  pointer-events: all;
 }
 
 .sidebar {
@@ -113,11 +181,20 @@ li {
   background-color: black;
   opacity: 0;
   pointer-events: none;
-  z-index: 900;
+  z-index: 500;
+}
+
+.main {
+  position: relative; /* required so ::after positions against it */
+  overflow: hidden; /* keeps glow inside */
+  --start: #2946a5;
+  --end: #000;
+  background: radial-gradient(ellipse at bottom, var(--start) 0%, var(--end) 100%);
 }
 
 .heading {
   font-family: Inter;
+  color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -135,28 +212,139 @@ li {
   font-weight: 600;
 }
 
-.options > a {
-  display: inline-flex; /* so padding works */
-  padding: 0.75rem 1.5rem; /* size */
-  margin: 1rem;
-  height: 10rem;
-  width: 10rem;
-  text-decoration: none; /* kill the underline */
-  color: white; /* text color */
-  background-color: #007bff; /* nice blue */
-  border-radius: 8px; /* rounded corners */
-  font-weight: bold; /* readable */
-  align-items: center;
-  justify-content: center;
+.drawer-but {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: rgb(37, 37, 37);
+  z-index: 1500;
 }
 
 /* .options > a:hover {
   pass
 } */
 .options {
+  height: 70vh;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "top-left mid top-right" "bot-left mid bot-right";
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+
+.options * {
+  box-sizing: border-box;
+}
+
+.options > div {
+  display: block;
+  box-shadow: 0 0 40px rgb(43, 43, 43);
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform-origin: right center;
+}
+
+.options > div {
+  display: grid;
+  text-decoration: none;
+  font-family: Inter;
+  height: 10rem;
+  width: 17rem;
+  position: absolute;
+  grid-template-rows: 2rem 1fr;
+}
+
+.card-content, .card-heading {
+  font-family: "Times New Roman", Times, serif;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.card-content {
+  padding: 10px;
+  padding-bottom: 50px;
+  font-weight: 100;
+}
+
+.card-heading {
+  font-weight: 500;
+  font-size: larger;
+}
+
+.goto {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 45px;
+  width: 45px;
+  background-color: #2946a5;
+  border-radius: 10px;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  text-decoration: none;
+  color: white;
+}
+
+.first {
+  grid-area: top-left;
+  justify-self: center;
+  align-self: center;
+}
+
+.second {
+  grid-area: bot-left;
+  justify-self: center;
+  align-self: center;
+}
+
+.third {
+  grid-area: mid;
+  justify-self: center;
+  align-self: center;
+}
+
+.fourth {
+  grid-area: top-right;
+  justify-self: center;
+  align-self: center;
+}
+
+.fifth {
+  grid-area: bot-right;
+  justify-self: center;
+  align-self: center;
+}
+
+.paw {
+  height: 10rem;
+  padding: 50px;
+  background-color: rgb(30, 32, 44);
+}
+
+.socials-bar {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin: 10px;
+  width: 1.5rem;
+  height: auto;
+}
+
+.icon-link {
+  text-decoration: none;
+  color: white;
 }/*# sourceMappingURL=main.css.map */
