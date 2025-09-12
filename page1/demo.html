@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OWASP Intro – Hero Board Template</title>
+  <style>
+    :root{
+      /* Theme tokens – tweak per page */
+      --bg: #0d0f14;
+      --surface: #121622;
+      --text: #e6e9f2;
+      --muted: #a7aebb;
+      --accent: #8b5cf6;        /* primary accent */
+      --accent-2: #22d3ee;      /* secondary accent */
+      --ring: #8b5cf6;
+      --selection-bg: #2b1b5e;  /* you pick this */
+      --selection-fg: #ffffff;
+    }
+
+    /* Optional alternate theme example */
+    [data-theme="crimson"]{
+      --accent: #ef4444;
+      --accent-2: #f59e0b;
+      --ring: #ef4444;
+      --selection-bg: #3a0a0a;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,0.18), transparent 60%),
+                  radial-gradient(1200px 600px at 110% 20%, rgba(34,211,238,0.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    ::selection{ background: var(--selection-bg); color: var(--selection-fg); }
+
+    .wrap{ max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+    .intro-hero{
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      min-height: min(60vh, 720px);
+      padding: clamp(8px, 2vw, 12px);
+    }
+
+    /* The "board" */
+    .board{
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: clamp(18px, 2.5vw, 28px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+      isolation: isolate;
+      overflow: clip;
+      min-height: 50vh; /* you proposed 50vh height – set as a floor */
+    }
+
+    /* Accent stripe on the left */
+    .board::before{
+      content: "";
+      position: absolute; inset: 0 auto 0 0; width: 8px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      border-top-left-radius: 24px; border-bottom-left-radius: 24px;
+    }
+
+    /* Soft glow under the board */
+    .board::after{
+      content: "";
+      position: absolute; inset: auto 10% -18px 10%; height: 36px;
+      filter: blur(20px); opacity: .35; pointer-events: none;
+      background: radial-gradient(40% 100% at 50% 0%, var(--accent), transparent 70%);
+      z-index: -1;
+    }
+
+    .eyebrow{
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      padding-left: 14px; /* to clear the accent stripe */
+    }
+    .pill{ display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px; padding: 4px 10px; font-weight: 600; }
+
+    h1{
+      margin: 8px 0 10px; font-size: clamp(28px, 4vw, 48px); line-height: 1.1;
+      letter-spacing: -0.02em;
+      padding-left: 14px;
+    }
+
+    .lede{
+      margin: 8px 0 18px; color: var(--muted); font-size: clamp(15px, 1.6vw, 18px);
+      max-width: 65ch; padding-left: 14px;
+    }
+
+    .quick-points{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-left: 14px; }
+    .quick-points li{ list-style: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+
+    .cta-row{ display: flex; gap: 12px; align-items: center; padding-left: 14px; margin-top: 14px; }
+    .cta{ appearance: none; border: none; cursor: pointer; border-radius: 14px; padding: 12px 16px; font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #0a0a0a;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+    }
+    .cta.secondary{ background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.14); }
+    .cta:focus-visible{ outline: 2px solid var(--ring); outline-offset: 3px; }
+
+    /* Image side */
+    .visual{
+      position: relative; display: grid; place-items: end; overflow: visible;
+    }
+    .visual img{
+      width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 18px; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 25px 60px rgba(0,0,0,.45);
+    }
+    .caption{ font-size: 12px; color: var(--muted); margin-top: 8px; text-align: right; }
+
+    /* Decorative blob behind image */
+    .visual::before{
+      content: ""; position: absolute; inset: auto -10% 10% -10%; height: 40%; z-index: -1;
+      background: radial-gradient(60% 120% at 60% 0%, rgba(139,92,246,0.3), transparent 70%),
+                  radial-gradient(80% 140% at 40% 100%, rgba(34,211,238,0.24), transparent 70%);
+      filter: blur(30px);
+    }
+
+    /* Subtle entry animation with reduced-motion respect */
+    @media (prefers-reduced-motion: no-preference){
+      .board, .visual img{ opacity: 0; transform: translateY(8px); animation: in 600ms ease forwards; }
+      .visual img{ animation-delay: 120ms; }
+      @keyframes in { to { opacity: 1; transform: translateY(0); } }
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px){ .intro-hero{ grid-template-columns: 1fr; }
+      .visual{ order: 2; } .board{ order: 1; min-height: auto; }
+      .quick-points{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="intro-hero" data-owasp="A01-Broken-Access-Control">
+      <div class="board" id="intro-board">
+        <div class="eyebrow">
+          <span class="pill" aria-hidden="true">🛡️ OWASP</span>
+          <span>Intro • Human-safe summary</span>
+        </div>
+        <h1>Broken Access Control</h1>
+        <p class="lede">When your app forgets to check “who’s allowed,” strangers walk through staff doors. This is the #1 real-world breach class because it’s easy to miss and hard to test casually.</p>
+        <ul class="quick-points">
+          <li><strong>What it is:</strong> Users can do things they’re not supposed to.</li>
+          <li><strong>Why care:</strong> Leads to data theft, account takeover, admin abuse.</li>
+          <li><strong>Feels like:</strong> A guest picking locks with the master key you left under the mat.</li>
+          <li><strong>Fix in short:</strong> Enforce checks server-side; deny-by-default.</li>
+        </ul>
+        <div class="cta-row">
+          <button class="cta">See Attack Flow</button>
+          <button class="cta secondary">Skip to Mitigations</button>
+        </div>
+      </div>
+
+      <figure class="visual">
+        <img src="https://images.unsplash.com/photo-1558344549-1b2c6726d0b2?q=80&w=1600&auto=format&fit=crop" alt="Stylized security gate with a gap – metaphor for broken access control." />
+        <figcaption class="caption">Swap this with a real, topical visual or simple SVG diagram.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <!-- Hook points for GSAP if you want fancier intros later -->
+  <script>
+    // Example: add a hover micro-interaction for the primary CTA without GSAP
+    const cta = document.querySelector('.cta');
+    if (matchMedia('(prefers-reduced-motion: no-preference)').matches && cta){
+      cta.addEventListener('pointerenter', ()=> cta.animate([
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-2px)' }
+      ], { duration: 140, fill: 'forwards', easing: 'ease-out' }));
+      cta.addEventListener('pointerleave', ()=> cta.animate([
+        { transform: 'translateY(-2px)' },
+        { transform: 'translateY(0)' }
+      ], { duration: 160, fill: 'forwards', easing: 'ease-in' }));
+    }
+
+    // For per-page theme: document.querySelector('html').setAttribute('data-theme','crimson')
+  </script>
+</body>
+</html>
