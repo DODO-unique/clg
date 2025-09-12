@@ -1,0 +1,60 @@
+.tech-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // gap: 24px;
+
+    padding: 40px;
+    min-height: 50vh;
+    width: 100%;
+
+}
+
+.technicals{
+    width: 80vw;
+    height: auto;
+    padding: 50px;
+    // background-color: $space-cadet;
+    // border-radius: 10px;
+    // box-shadow: 5px 5px 15px #000411;
+    color: white;
+    font-family: Inter;
+}
+
+// .technicals > h1{
+// }
+
+// .technicals > div {
+//     margin: 4rem;
+// }
+
+// .technicals > div > h2{
+//     margin-left: 4rem;
+// }
+
+
+// .technicals > div div h4 {
+//     margin-left: 5rem;
+// }
+
+// .technicals > div div {
+//     margin: 4rem;
+// }
+
+// .technicals > div div p {
+//     margin-left: 7rem;
+// }
+.technicals div {
+    margin: 2rem; /* every nested block scoots over */
+    margin-left: 4rem;
+}
+
+.technicals h4 {
+    margin-left: 2rem; /* minor adjustment */
+}
+
+.technicals p {
+    margin-left: 4rem;
+}
+
