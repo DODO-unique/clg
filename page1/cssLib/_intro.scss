@@ -25,8 +25,17 @@
     height: max-content;
     width: max-content;
     transition: color 0.3s ease-out, font-weight 0.3s ease-out;
-    z-index: 0;
+    // z-index: 1500;
     cursor: none;
+}
+
+// #intro-head{
+    //     display: inline-block;
+    // }
+#intro-head span{
+        display: inline-block;
+        position: relative;
+        z-index: 1500;
 }
 
 
@@ -38,7 +47,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    z-index: -1; /* keep it visible */
+    z-index: 1; /* keep it visible */
     transition: height 0.3s ease-out;
 }
 
