@@ -29,6 +29,8 @@
     border-radius: 20px;
     min-height: 50vh;
     width: 80vw;
+    opacity: 0;
+    // transform: translateX(-200%);
 }
 
 .row-1{
@@ -53,18 +55,35 @@
     padding-left: 70px;
 }
 
-.card-1 p, .card-2 p{
+.card-1 p, .card-2 p, .card-3 p, .card-4 p, .card-5 p{
     font-size: 1.25rem;
     color: white;
     font-family: Inter;
 }
 
-.card-1 div, .card-2 div{
+.card-1 div, .card-2 div, .card-4 div, .card-5 div{
     margin-left: 50px;
     font-size: 5rem;
     letter-spacing: 10px;
     font-family: "Crimson Text";
     color: white;
+}
+
+.card-4 div{
+    font-size: 4rem;
+}
+
+.card-3{
+    padding: 10px;
+}
+
+// .card-4 div span{
+//     display: inline-block;
+// }
+
+.odometer-numbers{
+    margin: 0;
+    padding: 0;
 }
 
 #total-incidents-counter, #total-CVE{
