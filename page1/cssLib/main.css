@@ -6,6 +6,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 .cursor {
+  display: none;
   position: fixed;
   top: -20px;
   left: -20px;
@@ -30,6 +31,7 @@ html, body {
 }
 
 .cursor-dot {
+  display: none;
   position: fixed;
   border-radius: 50%;
   background-color: white;
@@ -59,15 +61,6 @@ a {
   color: inherit;
 }
 
-.dot {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: hotpink;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
 #menu-btn {
   border: 2px solid white;
   margin: 1rem;
@@ -81,7 +74,7 @@ a {
   height: 2.5rem;
   width: 2.5rem;
   background-color: rgb(37, 37, 37);
-  z-index: 1500;
+  z-index: 500;
 }
 
 .navbar {
@@ -187,6 +180,24 @@ li {
   z-index: 500;
 }
 
+.intro-pop-overlay {
+  position: fixed;
+  inset: 0;
+  --circle: black;
+  background: radial-gradient(circle at 0% 50%, var(--circle) 0%, black 100%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.parent-overlay {
+  pointer-events: all;
+  opacity: 0;
+  z-index: 2500;
+  background-color: black;
+  inset: 0;
+  position: fixed;
+}
+
 .intro-box {
   display: flex;
   justify-content: center;
@@ -211,8 +222,13 @@ li {
   width: -moz-max-content;
   width: max-content;
   transition: color 0.3s ease-out, font-weight 0.3s ease-out;
-  z-index: 0;
   cursor: none;
+}
+
+#intro-head span {
+  display: inline-block;
+  position: relative;
+  z-index: 1500;
 }
 
 .bac-link::before {
@@ -223,7 +239,7 @@ li {
   width: 100%;
   bottom: 0;
   left: 0;
-  z-index: -1; /* keep it visible */
+  z-index: 1; /* keep it visible */
   transition: height 0.3s ease-out;
 }
 
@@ -277,6 +293,7 @@ li {
   border-radius: 20px;
   min-height: 50vh;
   width: 80vw;
+  opacity: 0;
 }
 
 .row-1 {
@@ -301,18 +318,31 @@ li {
   padding-left: 70px;
 }
 
-.card-1 p, .card-2 p {
+.card-1 p, .card-2 p, .card-3 p, .card-4 p, .card-5 p {
   font-size: 1.25rem;
   color: white;
   font-family: Inter;
 }
 
-.card-1 div, .card-2 div {
+.card-1 div, .card-2 div, .card-4 div, .card-5 div {
   margin-left: 50px;
   font-size: 5rem;
   letter-spacing: 10px;
   font-family: "Crimson Text";
   color: white;
+}
+
+.card-4 div {
+  font-size: 4rem;
+}
+
+.card-3 {
+  padding: 10px;
+}
+
+.odometer-numbers {
+  margin: 0;
+  padding: 0;
 }
 
 #total-incidents-counter, #total-CVE {
@@ -367,7 +397,8 @@ li {
 .case-study-box {
   max-width: 900px;
   margin: 2rem auto;
-  background: #fff;
+  -webkit-backdrop-filter: invert(1);
+          backdrop-filter: invert(1);
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   padding: 2rem;
@@ -386,19 +417,19 @@ li {
 }
 
 /* Header */
-header h1 {
+.github-BAC header h1 {
   font-size: 1.8rem;
   color: #1a1a1a;
   margin-bottom: 0.2rem;
 }
 
-header p {
+.github-BAC header p {
   color: #666;
   font-size: 0.95rem;
 }
 
 /* Section headings */
-section h2 {
+.github-BAC section h2 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
   color: #222;
@@ -406,7 +437,7 @@ section h2 {
 }
 
 /* Paragraphs */
-section p {
+.github-BAC section p {
   margin-bottom: 1rem;
 }
 
@@ -430,19 +461,18 @@ code {
 }
 
 /* Footer */
-footer {
-  border-top: 1px solid #eee;
+.github-BAC footer {
   padding-top: 1rem;
   font-size: 0.9rem;
   color: #555;
 }
 
-footer a {
+.github-BAC footer a {
   color: #007acc;
   text-decoration: none;
 }
 
-footer a:hover {
+.github-BAC footer a:hover {
   text-decoration: underline;
 }
 
