@@ -10,24 +10,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
         <!-- UMD build (global CountUp) -->
         <!-- <script type="module">
             import {CountUp} from 'https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.min.js'
         </script>
         -->
         
-        <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script> 
-        <script>
-            // Initialize Lenis
-            const lenis = new Lenis({
-        autoRaf: true,
-    });
-    
-    // Listen for the scroll event and log the event data
-    lenis.on('scroll', (e) => {
-        // console.log(e);
-    });
-    </script>
 </head>
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.js"></script>
@@ -72,20 +61,25 @@
         
         </header>
 <main class="grand-container">
+    <div class="parent-overlay"></div>
     <div class="intro-box">
         <!-- Intro Section -->
         <section id="intro">
                 <article class="intro-text-content">
                     
                     <!-- Hook / Gist -->
-                    <h1><a class="bac-link" href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">BROKEN ACCESS CONTROL</a></h1>
+                    <h1 id="intro-head" ><a id="intro-head" class="bac-link" href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">
+                        <span>BROKEN</span> <span>ACCESS</span> <span>CONTROL</span></a></h1>
+                    <div class="intro-pop-overlay"></div>
+
+
                     <p>Broken Access Control occurs when an application fails to enforce proper restrictions on authenticated users, allowing unauthorized access to sensitive data or functions. <br><br>
                     
                     <!-- Impact / What it does -->
                     Attackers can exploit these weaknesses to gain unauthorized access, potentially compromising entire systems, stealing sensitive data, or abusing admin privileges.</p>
                 
                 </article>
-
+ 
 
             <!-- <article class="intro-image"> -->
                 <!-- Optional news snippet image -->
@@ -100,7 +94,7 @@
 
     <div class="impact-box">
         <!-- section will be the board itself, the impact-box is the area the section is in- so the box shadows and all that apply to statistics impact-box is a flexbox -->
-        <section class="statistics">
+        <section id="stats" class="statistics">
             <div class="row-1">
                 <article class="card-1">
                     <!-- Total incidents -->
@@ -118,23 +112,31 @@
             <div class="row-2">
                 <article class="card-3">
                     <!-- yearly trend -->
+                     <p class="graph-heading">
+                        Reported CVE since 2021
+                     </p>
                     <canvas id="graph" height="600" width="1200"></canvas>
                 </article>
             </div>
-            <div class="row-3">
+            <!-- <div class="row-3">
                 <article class="card-4">
-                    <!-- Top Fines -->
-                     card-4
+
+                    
+                    <p class="avg-loss">Average Financial Loss per Breach</p>
+                    <div class="outer-wrapper-in-avg-loss">$<span class="inner-shell-in-avg-loss" id="avg-loss-per-breach">0</span>M*</div>
+                    <p>* This</p>
                 </article>
                 <article class="card-5">
-                    <!-- Attack success rate -->
-                     card-5
+
+                    <p class="customer-churn">Customer Churn</p>
+                    <div id="trsut-effect">0</div>
+                    <p>** These many people do not revisit the website after this attack</p>
                 </article>
                 <article class="card-6">
-                    <!-- Average downtime -->
-                     card-6
+
+                    Top fines
                 </article>
-            </div>
+            </div> -->
         </section>
     </div>
     
@@ -225,10 +227,12 @@
                     <section>
                         <h2>3. Proof of Concept (POC)</h2>
                         <p><em>Using curl:</em></p>
-                        <pre><code>curl -X POST https://demo.wegia.org/controle/control.php \
-                                -H "Content-Type: application/x-www-form-urlencoded" \
-                                -H "Origin: https://demo.wegia.org" \
-                                -d "new_password=NewPassword123&confirm_password=NewPassword123"</code></pre>
+                        <pre><code>
+curl -X POST https://demo.wegia.org/controle/control.php \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-H "Origin: https://demo.wegia.org" \
+-d "new_password=NewPassword123&confirm_password=NewPassword123"
+                        </code></pre>
                         <p>
                             This request demonstrates how an attacker can change the admin password without 
                             proper authentication.
@@ -270,5 +274,6 @@
 <script type="module" src="rollDownNums.js"></script>        
 <script src="universalScript.js"></script>
 <script src="localScript.js"></script>
+<script src="scroller.js"></script>
 </body>
 </html>
