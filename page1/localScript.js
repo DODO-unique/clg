@@ -29,6 +29,8 @@ plot.addEventListener('mouseleave', () => {
 // we give it context
 const ctx = document.getElementById('graph').getContext('2d')
 
+// This is the graph:
+
 new Chart(ctx, {
     type: 'line',
     data: {
@@ -97,3 +99,7 @@ plot.addEventListener("mousedown", (e) => {
     dot.style.top = e.pageY + 'px';
     
 })
+
+
+// This is the pie chart:
+
