@@ -9,14 +9,24 @@ const total_incidents = new CountUp('total-incidents-counter', 318487 , {
     duration: 2,
     useEasing: true
 });
-total_incidents.start();
 
 const total_CVE = new CountUp('total-CVE', 19013, {
     plugin: new Odometer({duration: 1, lastDigitDelay: 0}),
     duration: 2,
     useEasing: true
 });
-total_CVE.start();
+function startRoll() {
+    total_incidents.start();
+    total_CVE.start();
+} 
+
+const averageFinancialLoss = new CountUp('avg-loss-per-breach', 4.88, {
+    plugin: new Odometer({duration: 1, lastDigitDelay: 0}),
+    duration: 2,
+    useEasing: true,
+    decimalPlaces: 2
+})
+averageFinancialLoss.start()
 
 if (!total_incidents.error){
     total_incidents.start()
