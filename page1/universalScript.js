@@ -153,3 +153,117 @@ overlay.addEventListener("click", () => {
   toggleSide(false);
   toggleOverlay(false);
 });
+
+// The intro overlay for each attack pages
+// const heading = document.getElementById('intro-head');
+
+// // gsap.set(heading, {y:100})
+
+// gsap.fromTo(heading, 
+//   {
+//     y: 50,     // start slightly below
+//     opacity: 0,   // invisible at start
+//     scale: 0.9,
+//     zIndex: 1500,
+//   }, 
+//   {
+//     y: 0,         // natural position
+//     opacity: 1,   // fade in
+//     duration: 1,
+//     scale: 1,
+//     ease: "power3.out",
+//     color: 'green',
+//   }
+// );
+
+introOverlay = document.querySelector('.intro-pop-overlay')
+const headings = document.querySelectorAll('#intro-head span');
+
+let timeline1 = gsap.timeline({default: {duration: 5}, paused: true})
+
+// headings.forEach((heading) => {
+timeline1.to(introOverlay, {
+  // opacity: 0,
+  '--circle': '#1b8b6ffc',
+  ease: 'power2.inOut',
+  duration: 1.5
+})
+
+.fromTo(headings, 
+{
+  y: 20,     // start slightly below
+  x: 1000,
+  color: 'black',
+  opacity: 0,
+  scale: 0.8,
+  zIndex: 1500,
+  lineHeight: 1.5,
+}, 
+{
+  y: 0,         // natural position
+  x: 200,
+  opacity: 1,   // fade in
+  duration: 1,
+  scale: 1.3,
+  ease: "power4.inOut",
+  color: 'black',
+  stagger: 0.2,
+  
+  // delay: 0.5
+},
+"-=0.5"
+)
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+let timeline2 = gsap.timeline({default: {duration:1}, paused: true})
+
+timeline2.to(introOverlay, {
+  opacity: 0,
+  ease: 'sine.out',
+  duration: 2,
+  onComplete: () => {
+    introOverlay.style.setProperty('display', 'none')
+  },
+})
+
+.to(headings, {
+  y: 0,
+  x: 0,
+  color: 'inherit',
+  ease: 'sine.inOut',
+  lineHeight: 1,
+  stagger: 0.2,
+  scale: 1
+}, '<' )
+
+.eventCallback('onComplete', () => {
+    const parentOverlay = document.querySelector('.parent-overlay')
+    parentOverlay.style.display = 'none'
+    // parentOverlay.style.pointerEvents = 'none'
+    headings.forEach((heading) => {
+      heading.style.zIndex = 1
+    cursor.style.display = 'block'
+    cursor_halo.style.display = 'block'
+
+    window.scrollTo({top: 0, behavior: "smooth"})
+    })
+  })
+
+
+
+async function intro() {
+  timeline1.play()
+  await sleep(3000)
+  timeline2.play()
+}
+
+intro()
+// timeline1.reverse()
+
+
+// })
+
