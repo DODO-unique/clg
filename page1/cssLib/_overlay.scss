@@ -1,0 +1,19 @@
+
+.intro-pop-overlay{
+    position: fixed;
+    inset: 0;
+    --circle: black;
+    // background-color: yellowgreen;
+    background: radial-gradient(circle at 0% 50%, var(--circle) 0%, black 100%);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.parent-overlay{
+    pointer-events: all;
+    opacity: 0;
+    z-index: 2500;
+    background-color: black;
+    inset: 0;
+    position: fixed;
+}
